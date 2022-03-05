@@ -1,12 +1,34 @@
+// this component displays the number of cakes 
+// so this is part of redux-state (num of cakes remaining changes after dispatching the buy cake each time)
+// we will dispatch the buycake action from the button
 import React from 'react'
+import { connect } from 'react-redux'
+import { buyCake } from '../redux'
 
-function CakeContainer() {
+function CakeContainer(props) {
   return (
     <div>
-        <h2>Number of Cakes:</h2>
-        <button>Buy Cake</button>
+        <h2>Number of Cakes: {props.numOfCakes}</h2>
+        <button onClick={props.buyCake}>Buy Cake</button>
     </div>
   )
 }
 
-export default CakeContainer
+// below the state from the redux door is mapped to our component props
+// so, apart from whatever props the cakeContatiner was recieving, it will now recieve an additional number of prop called numOfCakes which reflects the num of cakes in the reudx store
+const mapStateToProps = state => {
+  return {
+    numOfCakes: state.numOfCakes
+  }
+}
+// similarly, the below function will `map` our dispatch of an action creator to a prop in our component 
+// so our component now reciees a second additional prop called buyCake which will dispatch the buyCake action
+const mapDispatchToProps = dispatch => {
+  return {
+    buyCake: () => dispatch(buyCake())
+  }
+}
+// we're gonna connect these 2 functions with our react component
+
+export default connect(
+  mapStateToProps, mapDispatchToProps)(CakeContainer)
