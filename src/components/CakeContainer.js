@@ -1,4 +1,4 @@
-// this component displays the number of cakes 
+// this is a react-functional-component that  displays the number of cakes 
 // so this is part of redux-state (num of cakes remaining changes after dispatching the buy cake each time)
 // we will dispatch the buycake action from the button
 import React from 'react'
