@@ -25,10 +25,11 @@ const mapStateToProps = state => {
 // so our component now reciees a second additional prop called buyCake which will dispatch the buyCake action
 const mapDispatchToProps = dispatch => {
   return {
+    // this object dispatches the action-creator from redux
     buyCake: () => dispatch(buyCake())
   }
 }
 // we're gonna connect these 2 functions with our react component
-
+// we're using the connect-higher-order component (or the connect function) from react-redux library
 export default connect(
   mapStateToProps, mapDispatchToProps)(CakeContainer)
